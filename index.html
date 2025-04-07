@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEKO | Portfólio</title>
+  <meta name="description" content="Portfólio pessoal da NEKO. Fale conosco pelo WhatsApp." />
+  <meta name="author" content="NEKO" />
+  <link rel="icon" href="https://via.placeholder.com/32" type="image/png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <img src="gato.png" alt="Logo da NEKO" />
+    <h1>digital NEKO</h1>
+  </header>
+
+  <main>
+    <div class="imagem-destaque">
+      <img src="sa4.jpeg" alt="Imagem de destaque com identidade visual digital" loading="lazy" />
+    </div>
+
+    <h2 class="titulo-portfolio">Portfólio</h2>
+
+    <section class="galeria">
+      <figure class="item-galeria" onclick="abrirGaleria(0)">
+        <figcaption class="titulo-img">Projeto 1</figcaption>
+        <img src="sa.png" alt="Projeto 1 - Logotipo e identidade visual" loading="lazy" />
+        <div class="overlay-texto">Criação de identidade visual e logotipo exclusivo.</div>
+      </figure>
+
+      <figure class="item-galeria" onclick="abrirGaleria(1)">
+        <figcaption class="titulo-img">Projeto 2</figcaption>
+        <img src="sa2.png" alt="Projeto 2 - Layout para redes sociais" loading="lazy" />
+        <div class="overlay-texto">Layout moderno para redes sociais com foco em branding.</div>
+      </figure>
+
+      <figure class="item-galeria" onclick="abrirGaleria(2)">
+        <figcaption class="titulo-img">Projeto 3</figcaption>
+        <img src="sa3.jpg" alt="Projeto 3 - Website responsivo" loading="lazy" />
+        <div class="overlay-texto">Website responsivo e otimizado para performance.</div>
+      </figure>
+    </section>
+
+    <a class="whatsapp-box" href="https://wa.me/5511999999999" target="_blank" aria-label="Fale conosco no WhatsApp">
+      Fale conosco no WhatsApp
+    </a>
+  </main>
+
+  <footer>&copy; 2025 NEKO</footer>
+
+  <!-- Lightbox -->
+  <div id="lightbox" role="dialog" aria-modal="true" style="display:none;" onclick="fecharGaleria()">
+    <button id="prev-btn">&#10094;</button>
+    <img id="lightbox-img" src="" alt="Imagem ampliada do portfólio" />
+    <button id="next-btn">&#10095;</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
