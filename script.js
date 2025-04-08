@@ -20,6 +20,7 @@ function handleScroll() {
   const scrollY = window.scrollY;
   const fadeStart = 100;
   const fadeEnd = 300;
+
   const subtituloAtual = document.querySelector('.subtitulo');
 
   if (scrollY < fadeStart) {
@@ -60,7 +61,7 @@ function handleScroll() {
 
 requestAnimationFrame(handleScroll);
 
-// Touch support
+// Touch support para clique/tap
 let touchStartY = 0;
 let touchEndY = 0;
 
@@ -80,7 +81,7 @@ document.querySelectorAll('.item-galeria').forEach(item => {
   });
 });
 
-// Intersection Observer
+// Auto-play GIFs em dispositivos móveis com Intersection Observer
 const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
 if (isMobile && 'IntersectionObserver' in window) {
@@ -92,7 +93,9 @@ if (isMobile && 'IntersectionObserver' in window) {
         entry.target.classList.remove('touch-active');
       }
     });
-  }, { threshold: 0.6 });
+  }, {
+    threshold: 0.6
+  });
 
   document.querySelectorAll('.item-galeria').forEach(item => {
     observer.observe(item);
