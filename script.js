@@ -71,6 +71,7 @@ function handleScroll() {
 
 requestAnimationFrame(handleScroll);
 
+// Touch support para clique/tap
 let touchStartY = 0;
 let touchEndY = 0;
 
@@ -81,8 +82,11 @@ document.querySelectorAll('.item-galeria').forEach(item => {
 
   item.addEventListener('touchend', (e) => {
     touchEndY = e.changedTouches[0].clientY;
-    if (Math.abs(touchEndY - touchStartY) < 30) {
-      item.classList.toggle('touch-active');
+    const distance = Math.abs(touchEndY - touchStartY);
+    if (distance < 10) {
+      const isActive = item.classList.contains('touch-active');
+      document.querySelectorAll('.item-galeria').forEach(i => i.classList.remove('touch-active'));
+      if (!isActive) item.classList.add('touch-active');
     }
   });
 });
