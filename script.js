@@ -1,72 +1,16 @@
-// Função para alternar entre modo claro e escuro
+const toggleButton = document.querySelector('.dark-mode-toggle');
+
+if (localStorage.getItem('dark-mode') === 'enabled') {
+  document.body.classList.add('dark-mode');
+}
+
 function toggleDarkMode() {
-  // Adiciona ou remove a classe 'dark-mode' no body para mudar o tema
-  document.body.classList.toggle('dark-mode');
-  
-  // Verifica se o tema atual é escuro para ajustar o texto do botão
-  const button = document.querySelector('.dark-mode-toggle');
-  if (document.body.classList.contains('dark-mode')) {
-    button.textContent = 'Modo Claro';
-  } else {
-    button.textContent = 'Modo Escuro';
-  }
-
-  // Salva a preferência do modo no localStorage
-  storeDarkModePreference();
+  const isDark = document.body.classList.toggle('dark-mode');
+  localStorage.setItem('dark-mode', isDark ? 'enabled' : 'disabled');
+  applyToggleButtonStyle();
 }
 
-// Armazenamento da preferência do modo escuro no localStorage
-function storeDarkModePreference() {
-  if (document.body.classList.contains('dark-mode')) {
-    localStorage.setItem('darkMode', 'enabled');
-  } else {
-    localStorage.setItem('darkMode', 'disabled');
-  }
-}
-
-// Detecta a preferência salva no localStorage e aplica o tema correto
-window.addEventListener('load', function() {
-  if (localStorage.getItem('darkMode') === 'enabled') {
-    document.body.classList.add('dark-mode');
-    document.querySelector('.dark-mode-toggle').textContent = 'Modo Claro';
-  } else {
-    document.body.classList.remove('dark-mode');
-    document.querySelector('.dark-mode-toggle').textContent = 'Modo Escuro';
-  }
-});
-
-// Alteração da visibilidade das imagens estáticas e gifs na galeria
-let touchStartY = 0;
-let touchEndY = 0;
-
-// Função para ativar/desativar a troca entre imagens estáticas e gifs
-document.querySelectorAll('.item-galeria').forEach(item => {
-  item.addEventListener('click', function() {
-    // Alterna a classe 'touch-active' para controlar a troca entre as imagens
-    item.classList.toggle('touch-active');
-  });
-
-  // Detecta gestos de toque para dispositivos móveis
-  item.addEventListener('touchstart', (e) => {
-    touchStartY = e.touches[0].clientY;
-  });
-
-  item.addEventListener('touchend', (e) => {
-    touchEndY = e.changedTouches[0].clientY;
-    const distance = Math.abs(touchEndY - touchStartY);
-    if (distance < 10) {
-      const isActive = item.classList.contains('touch-active');
-      document.querySelectorAll('.item-galeria').forEach(i => i.classList.remove('touch-active'));
-      if (!isActive) item.classList.add('touch-active');
-    }
-  });
-});
-
-// Função para ajustar o estilo do botão conforme o tamanho da tela
 function applyToggleButtonStyle() {
-  const toggleButton = document.querySelector('.dark-mode-toggle');
-
-  // Se a largura da tela for menor ou igual a 768px, altera o estilo do botão
   if (window.innerWidth <= 768) {
     toggleButton.classList.add('icon-style');
     toggleButton.textContent = document.body.classList.contains('dark-mode') ? '☀' : '☾';
@@ -76,6 +20,69 @@ function applyToggleButtonStyle() {
   }
 }
 
-// Chama a função para aplicar o estilo do botão no carregamento da página
 window.addEventListener('resize', applyToggleButtonStyle);
 applyToggleButtonStyle();
+
+const tituloCentral = document.querySelector('.titulo-central');
+const tituloContainer = document.getElementById('tituloContainer');
+
+function handleScroll() {
+  const scrollY = window.scrollY;
+  const fadeStart = 100;
+  const fadeEnd = 300;
+
+  const subtituloAtual = document.querySelector('.subtitulo');
+
+  if (scrollY < fadeStart) {
+    if (!subtituloAtual) {
+      const p = document.createElement('p');
+      p.className = 'subtitulo';
+      p.textContent = 'Soluções criativas e modernas para suas ideias inovadoras.';
+      tituloContainer.appendChild(p);
+    } else {
+      subtituloAtual.style.opacity = '1';
+    }
+  } else if (scrollY > fadeEnd) {
+    if (subtituloAtual) {
+      subtituloAtual.remove();
+    }
+  } else {
+    if (subtituloAtual) {
+      const progress = 1 - (scrollY - fadeStart) / (fadeEnd - fadeStart);
+      subtituloAtual.style.opacity = progress.toString();
+    }
+  }
+
+  const paddingTop = Math.max(0.5, 4 - scrollY / 50);
+  const paddingBottom = Math.max(0.3, 2 - scrollY / 100);
+  tituloContainer.style.paddingTop = `${paddingTop}rem`;
+  tituloContainer.style.paddingBottom = `${paddingBottom}rem`;
+
+  const fontSizeStart = 3.5;
+  const fontSizeEnd = 2.5;
+  const scaleStart = 0;
+  const scaleEnd = 300;
+  const progress = Math.min(1, Math.max(0, (scrollY - scaleStart) / (scaleEnd - scaleStart)));
+  const currentFontSize = fontSizeStart - progress * (fontSizeStart - fontSizeEnd);
+  tituloCentral.style.fontSize = `${currentFontSize}rem`;
+
+  requestAnimationFrame(handleScroll);
+}
+
+requestAnimationFrame(handleScroll);
+
+let touchStartY = 0;
+let touchEndY = 0;
+
+document.querySelectorAll('.item-galeria').forEach(item => {
+  item.addEventListener('touchstart', (e) => {
+    touchStartY = e.touches[0].clientY;
+  });
+
+  item.addEventListener('touchend', (e) => {
+    touchEndY = e.changedTouches[0].clientY;
+    if (Math.abs(touchEndY - touchStartY) < 30) {
+      item.classList.toggle('touch-active');
+    }
+  });
+});
