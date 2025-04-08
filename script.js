@@ -11,7 +11,6 @@ function toggleDarkMode() {
   const isDark = document.body.classList.toggle('dark-mode');
   localStorage.setItem('dark-mode', isDark ? 'enabled' : 'disabled');
   toggleButton.textContent = isDark ? 'Modo Claro' : 'Modo Escuro';
-  toggleButton.setAttribute('aria-pressed', isDark); // Acessibilidade
 }
 
 const tituloContainer = document.getElementById('tituloContainer');
@@ -53,4 +52,3 @@ document.querySelectorAll('.item-galeria').forEach(item => {
     }
   });
 });
-
