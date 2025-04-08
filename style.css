@@ -1,20 +1,14 @@
 :root {
   --bg-color: #fdfdfd;
   --text-color: #222;
-  --button-bg: #0071e3;
-  --button-hover-bg: #0061c5;
-  --button-text-color: white;
-  --button-border-radius: 50px;
-  --button-padding: 12px 24px;
-  --button-font-size: 16px;
-  --button-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  --button-active-bg: #0051a1;
+  --button-border: #25D366;
+  --button-hover-bg: #eafff1;
 }
 
 body.dark-mode {
   --bg-color: #111;
   --text-color: #fdfdfd;
-  --button-bg: #25D366;
+  --button-border: #25D366;
   --button-hover-bg: #1a3c2f;
 }
 
@@ -40,50 +34,32 @@ body {
   position: fixed;
   top: 1rem;
   right: 1rem;
-  padding: var(--button-padding);
-  font-size: var(--button-font-size);
-  border: none;
-  border-radius: var(--button-border-radius);
-  background-color: var(--button-bg);
-  color: var(--button-text-color);
-  font-weight: bold;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  border: 1px solid var(--text-color);
+  border-radius: 8px;
+  background-color: transparent;
+  color: var(--text-color);
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: var(--button-box-shadow);
   z-index: 100;
 }
 
 .dark-mode-toggle:hover {
   background-color: var(--button-hover-bg);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-}
-
-.dark-mode-toggle:active {
-  background-color: var(--button-active-bg);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  transform: scale(0.98);
 }
 
 .dark-mode-toggle.icon-style {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background-color: var(--button-bg);
-  color: var(--button-text-color);
+  background-color: var(--text-color);
+  color: var(--bg-color);
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.6rem;
-  box-shadow: var(--button-box-shadow);
-}
-
-.dark-mode-toggle.icon-style:hover {
-  background-color: var(--button-hover-bg);
-}
-
-.dark-mode-toggle.icon-style:active {
-  background-color: var(--button-active-bg);
+  font-size: 1.2rem;
 }
 
 #tituloContainer {
@@ -305,6 +281,17 @@ footer {
   .link-box {
     width: 90%;
   }
+
+  .dark-mode-toggle {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    right: 0.5rem;
+    top: 0.5rem;
+    border-radius: 50px;
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+  }
 }
 
 @media (max-width: 500px) {
@@ -313,12 +300,4 @@ footer {
     max-width: 280px;
     height: 400px;
   }
-
-  .dark-mode-toggle {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
-    right: 0.5rem;
-    top: 0.5rem;
-  }
 }
-
