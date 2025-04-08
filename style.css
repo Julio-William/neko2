@@ -18,6 +18,10 @@ body.dark-mode {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: var(--bg-color);
@@ -51,7 +55,19 @@ body {
   width: 100%;
   text-align: center;
   z-index: 10;
-  transition: opacity 1s ease;
+  transition: opacity 1s ease, background-color 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 2rem 1rem;
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  max-width: 800px;
+  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+body.dark-mode #tituloContainer {
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 #tituloContainer.fade-out {
@@ -92,11 +108,21 @@ main {
   overflow: hidden;
   border-radius: 10px;
   box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.8s ease, box-shadow 0.8s ease, border 0.3s ease;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: none;
+}
+
+body.dark-mode .item-galeria {
+  border: 1px solid transparent;
+}
+
+body.dark-mode .item-galeria:hover {
+  box-shadow: 0 0 2px #cc33ff;
+  border: 1px solid #cc33ff;
 }
 
 .item-galeria .img-estatica,
@@ -134,7 +160,13 @@ main {
   font-weight: bold;
   text-align: center;
   z-index: 2;
-  transition: all 0.4s ease;
+  transition: all 0.9s ease-in-out, color 0.3s ease, background-color 0.3s ease;
+  color: #111;
+}
+
+body.dark-mode .titulo-img {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fdfdfd;
 }
 
 .item-galeria:hover .titulo-img,
@@ -224,6 +256,31 @@ footer {
   text-align: center;
 }
 
+@media (max-width: 768px) {
+  .titulo-central {
+    font-size: 2rem;
+  }
+
+  .subtitulo {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  .imagem-cheia-wrapper {
+    height: 60vh;
+    margin-top: 3rem;
+  }
+
+  .contato-links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .link-box {
+    width: 90%;
+  }
+}
+
 @media (max-width: 500px) {
   .item-galeria {
     width: 100%;
@@ -238,5 +295,6 @@ footer {
     top: 0.5rem;
   }
 }
+
 
   
