@@ -2,26 +2,16 @@ const toggleButton = document.querySelector('.dark-mode-toggle');
 
 if (localStorage.getItem('dark-mode') === 'enabled') {
   document.body.classList.add('dark-mode');
+  toggleButton.textContent = 'Modo Claro';
+} else {
+  toggleButton.textContent = 'Modo Escuro';
 }
 
 function toggleDarkMode() {
   const isDark = document.body.classList.toggle('dark-mode');
   localStorage.setItem('dark-mode', isDark ? 'enabled' : 'disabled');
-  applyToggleButtonStyle();
+  toggleButton.textContent = isDark ? 'Modo Claro' : 'Modo Escuro';
 }
-
-function applyToggleButtonStyle() {
-  if (window.innerWidth <= 768) {
-    toggleButton.classList.add('icon-style');
-    toggleButton.textContent = document.body.classList.contains('dark-mode') ? '☀' : '☾';
-  } else {
-    toggleButton.classList.remove('icon-style');
-    toggleButton.textContent = document.body.classList.contains('dark-mode') ? 'Modo Claro' : 'Modo Escuro';
-  }
-}
-
-window.addEventListener('resize', applyToggleButtonStyle);
-applyToggleButtonStyle();
 
 const tituloCentral = document.querySelector('.titulo-central');
 const tituloContainer = document.getElementById('tituloContainer');
@@ -71,7 +61,7 @@ function handleScroll() {
 
 requestAnimationFrame(handleScroll);
 
-// Touch support para clique/tap
+// Touch para GIFs
 let touchStartY = 0;
 let touchEndY = 0;
 
@@ -90,3 +80,24 @@ document.querySelectorAll('.item-galeria').forEach(item => {
     }
   });
 });
+
+// Auto GIF play em mobile com Intersection Observer
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+if (isMobile && 'IntersectionObserver' in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('touch-active');
+      } else {
+        entry.target.classList.remove('touch-active');
+      }
+    });
+  }, {
+    threshold: 0.6
+  });
+
+  document.querySelectorAll('.item-galeria').forEach(item => {
+    observer.observe(item);
+  });
+}
