@@ -3,58 +3,53 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NEKO | Portfólio</title>
-  <meta name="description" content="Portfólio pessoal da NEKO. Fale conosco pelo WhatsApp." />
-  <meta name="author" content="NEKO" />
-  <link rel="icon" href="https://via.placeholder.com/32" type="image/png" />
+  <title>UP | Digital</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <img src="gato.png" alt="Logo da NEKO" />
-    <h1>digital NEKO</h1>
-  </header>
+  <button class="dark-mode-toggle" onclick="toggleDarkMode()">Modo Escuro</button>
+
+  <div id="tituloContainer">
+    <h1 class="titulo-central">digital UP</h1>
+    <p class="subtitulo">Soluções criativas e modernas para suas ideias inovadoras.</p>
+  </div>
 
   <main>
-    <div class="imagem-destaque">
-      <img src="sa4.jpeg" alt="Imagem de destaque com identidade visual digital" loading="lazy" />
-    </div>
-
-    <h2 class="titulo-portfolio">Portfólio</h2>
-
     <section class="galeria">
-      <figure class="item-galeria" onclick="abrirGaleria(0)">
-        <figcaption class="titulo-img">Projeto 1</figcaption>
-        <img src="sa.png" alt="Projeto 1 - Logotipo e identidade visual" loading="lazy" />
+      <div class="item-galeria">
+        <div class="titulo-img">Projeto 1</div>
+        <img class="img-estatica" src="thumb1.png" alt="Projeto 1 - imagem estática" />
+        <img class="img-gif" src="to5.gif" alt="Projeto 1 - gif" />
         <div class="overlay-texto">Criação de identidade visual e logotipo exclusivo.</div>
-      </figure>
+      </div>
 
-      <figure class="item-galeria" onclick="abrirGaleria(1)">
-        <figcaption class="titulo-img">Projeto 2</figcaption>
-        <img src="sa2.png" alt="Projeto 2 - Layout para redes sociais" loading="lazy" />
+      <div class="item-galeria">
+        <div class="titulo-img">Projeto 2</div>
+        <img class="img-estatica" src="thumb2.png" alt="Projeto 2 - imagem estática" />
+        <img class="img-gif" src="to3.gif" alt="Projeto 2 - gif" />
         <div class="overlay-texto">Layout moderno para redes sociais com foco em branding.</div>
-      </figure>
+      </div>
 
-      <figure class="item-galeria" onclick="abrirGaleria(2)">
-        <figcaption class="titulo-img">Projeto 3</figcaption>
-        <img src="sa3.jpg" alt="Projeto 3 - Website responsivo" loading="lazy" />
+      <div class="item-galeria">
+        <div class="titulo-img">Projeto 3</div>
+        <img class="img-estatica" src="thumb3.png" alt="Projeto 3 - imagem estática" />
+        <img class="img-gif" src="to6.gif" alt="Projeto 3 - gif" />
         <div class="overlay-texto">Website responsivo e otimizado para performance.</div>
-      </figure>
+      </div>
     </section>
 
-    <a class="whatsapp-box" href="https://wa.me/5511999999999" target="_blank" aria-label="Fale conosco no WhatsApp">
-      Fale conosco no WhatsApp
-    </a>
+    <div class="imagem-cheia-wrapper">
+      <img class="imagem-cheia" src="sa.png" alt="Imagem de fundo preenchendo a tela" />
+      <div class="imagem-checkpoint" id="imagemCheckpoint"></div>
+    </div>
+
+    <div class="contato-links">
+      <a class="link-box" href="https://instagram.com" target="_blank">Instagram</a>
+      <a class="link-box" href="https://wa.me/5511999999999" target="_blank">WhatsApp</a>
+    </div>
   </main>
 
-  <footer>&copy; 2025 NEKO</footer>
-
-  <!-- Lightbox -->
-  <div id="lightbox" role="dialog" aria-modal="true" style="display:none;" onclick="fecharGaleria()">
-    <button id="prev-btn">&#10094;</button>
-    <img id="lightbox-img" src="" alt="Imagem ampliada do portfólio" />
-    <button id="next-btn">&#10095;</button>
-  </div>
+  <footer>&copy; 2025 digitalUP</footer>
 
   <script src="script.js"></script>
 </body>
