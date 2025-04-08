@@ -281,17 +281,6 @@ footer {
   .link-box {
     width: 90%;
   }
-
-  .dark-mode-toggle {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
-    right: 0.5rem;
-    top: 0.5rem;
-    border-radius: 50px;
-    background-color: transparent;
-    color: var(--text-color);
-    border: 1px solid var(--text-color);
-  }
 }
 
 @media (max-width: 500px) {
@@ -299,5 +288,12 @@ footer {
     width: 100%;
     max-width: 280px;
     height: 400px;
+  }
+
+  .dark-mode-toggle {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    right: 0.5rem;
+    top: 0.5rem;
   }
 }
